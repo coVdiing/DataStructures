@@ -1,4 +1,4 @@
-package com.vi.sparsearray;
+package com.vi.queue;
 
 import java.util.Scanner;
 
