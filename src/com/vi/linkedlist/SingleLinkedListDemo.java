@@ -13,6 +13,12 @@ public class SingleLinkedListDemo {
 		sll.add(hero3);
 		sll.add(hero4);
 		sll.showList();
+		sll.del(1);
+		sll.del(4);
+		sll.del(2);
+		sll.del(3);
+		sll.del(0);
+		sll.showList();
 	}
 
 }
@@ -30,6 +36,58 @@ class SingleLinkedList {
 			temp = temp.next;
 		}
 		temp.next = hero;
+	}
+	
+	//修改节点
+	public void update(HeroNode newHero) {
+		//判断链表是否为空
+		if(head.next == null) {
+			return;
+		}
+		HeroNode temp = head;
+		boolean flag = false;
+		while(true) {
+			temp = temp.next;
+			if(temp.next == null)
+				break;
+			if(newHero.no == temp.no) {
+				temp.name = newHero.name;
+				temp.nickName = newHero.nickName;
+				flag = true;
+				break;
+			}
+		}
+		if(flag) {
+			System.out.println("修改成功");
+		} else {
+			System.out.println("没有找到该节点");
+		}
+	}
+	
+	//删除节点
+	public void del(int no) {
+		if(head.next == null) {
+			System.out.println("链表为空");
+			return;
+		}
+		HeroNode temp = head;
+		boolean flag = false;
+		while(true) {
+			if(temp.next == null) {
+				break;
+			}
+			if(temp.next.no == no) {
+				temp.next = temp.next.next;
+				flag = true;
+				break;
+			}
+			temp = temp.next;
+		}
+		if(flag) {
+			System.out.printf("节点%d删除成功\n",no);
+		} else {
+			System.out.printf("节点%d删除失败\n",no);
+		}
 	}
 	
 	//遍历链表
