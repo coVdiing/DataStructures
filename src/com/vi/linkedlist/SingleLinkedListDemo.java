@@ -6,24 +6,60 @@ public class SingleLinkedListDemo {
 		HeroNode hero1 = new HeroNode(1, "李白", "诗仙");
 		HeroNode hero2 = new HeroNode(2, "杜甫", "诗圣");
 		HeroNode hero3 = new HeroNode(3, "李贺", "诗鬼");
-		HeroNode hero4 = new HeroNode(4, "王勃", "初唐四杰");
+		HeroNode hero4 = new HeroNode(8, "汉", "丝绸之路");
+		HeroNode hero5 = new HeroNode(7, "唐", "贞观之治");
+		HeroNode hero6 = new HeroNode(4, "王勃", "初唐四杰");
+		HeroNode hero7 = new HeroNode(6, "秦", "千古一帝");
+		HeroNode hero8 = new HeroNode(9, "清", "九子夺嫡");
 		SingleLinkedList sll = new SingleLinkedList();
 		sll.add(hero1);
 		sll.add(hero2);
 		sll.add(hero3);
 		sll.add(hero4);
+		sll.add(hero5);
+		sll.add(hero6);
+		sll.add(hero7);
+		sll.add(hero8);
 		sll.showList();
 		// 测试getLength方法
-		System.out.println(sll.getLength(sll.getHead()));
+//		System.out.println(sll.getLength(sll.getHead()));
 		// 测试返回倒数第index个节点的方法
-		System.out.println(sll.findNodeByIndex(sll.getHead(),4));
+//		System.out.println(sll.findNodeByIndex(sll.getHead(),4));
+		//测试反转单链表方法
+		System.out.println("测试反转方法");
+		sll.reverse();
+		sll.showList();
 	}
 
 }
 
 class SingleLinkedList {
 	private HeroNode head = new HeroNode(0, null, null);
-
+	
+	//反转单链表
+	public void reverse() {
+		if(head.next == null || head.next.next == null)
+			return ;
+		HeroNode temp = head.next;
+		HeroNode newHead = new HeroNode(0,"","");
+		while(temp!=null){
+			//如果newHead.next==null，说明后面没有节点，把遍历的节点直接加上去即可
+			if(newHead.next == null) {
+				newHead.next = temp;
+				HeroNode next = temp.next;
+				//末尾的节点next需要置null
+				temp.next = null;
+				temp = next;
+			}
+			else {
+				HeroNode next = temp.next;
+				temp.next = newHead.next;
+				newHead.next = temp;
+				temp = next;
+			}
+		}
+		head.next = newHead.next;
+	}
 	// 返回头结点
 	public HeroNode getHead() {
 		return this.head;
