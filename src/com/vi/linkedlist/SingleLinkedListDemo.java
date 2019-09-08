@@ -28,8 +28,8 @@ public class SingleLinkedListDemo {
 		System.out.println("链表的初始状态:");
 		s1.showList();
 		System.out.println("---------");
-		s2.showList();
-		System.out.println("测试合并方法:");
+		s1.showList();
+//		System.out.println("测试合并方法:");
 		HeroNode newHead = SingleLinkedList.mergeLinkedList(s1.getHead(), s2.getHead());
 		SingleLinkedList.showList(newHead);
 		// 测试getLength方法
@@ -79,6 +79,7 @@ class SingleLinkedList {
 		HeroNode cur1 = head1.next;
 		HeroNode cur2 = head2.next;
 		HeroNode newCur = newHead;
+		//判断的条件是遍历两个链表时当前节点不同时为空，这样一来就分为3种情况:同时不为空和一个为空另一个不为空。
 		while(cur1 != null || cur2 != null) {
 				if(cur1 != null && cur2 != null) {
 					if(cur1.no >= cur2.no) {
