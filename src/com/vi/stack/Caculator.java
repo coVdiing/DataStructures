@@ -8,8 +8,9 @@ package com.vi.stack;
  */
 public class Caculator {
 	public static void main(String[] args) {
+		
 		// 需要计算的表达式
-		String expression = "1+2*3+4/2+11+22";
+		String expression = "11*5-7+2/2-3+4-1-2+3";
 		// 扫描表达式的索引
 		int index = 0;
 		int num1 = 0;
@@ -142,9 +143,9 @@ class ArrayStackForMath {
 	// 定义运算符之间的优先级
 	public static int priority(int oper) {
 		if (oper == '*' || oper == '/')
+			return 2;
+		else if (oper == '-' || oper == '+' )
 			return 1;
-		else if (oper == '+' || oper == '-')
-			return 0;
 		else
 			return -1;
 	}
